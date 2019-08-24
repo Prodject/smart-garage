@@ -1,0 +1,38 @@
+# cd /lib/systemd/system
+# sudo vi sense-light.service
+
+
+# In /lib/systemd/system/sense-light.service file
+---------------------------------------------------
+[Unit]
+Description=Pi Sense Light Service
+After=syslog.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u sense-light.py
+WorkingDirectory=/home/pi/sense-light-foldername
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+---------------------------------------------------
+
+
+# After saving the sense-light.service file
+# you need to reload daemon with the following command:
+
+# sudo systemctl daemon-reload 
+# Run it now
+
+# If you want to autostart the service after reboot, 
+# you need to enable the service with:
+
+# sudo systemctl enable sense-light.service
+# Run it now
+
+# Then start it or check its status with:
+# sudo systemctl start sense-light.service
+# sudo systemctl status sense-light.service
