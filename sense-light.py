@@ -32,9 +32,6 @@ def log(text):
 def open_garage_light(): 
 
     '''
-    ******* YOU NEED TO SETUP YOUR MAC_ADDRESS   *******
-    ******* WHICH IS "FF:FF:FF:FF:FF:FF" NOW!    *******
-    ******* CHANGE IT TO YOUR DEVICE MAC ADDRESS *******
     Connect to your LOLAR Bluetooth Low Energy switch and turn it on;
     Try to turn it on within `connect_ble_time_limit` seconds,
     if not successful (due to ble issues) then abort this try
@@ -45,7 +42,7 @@ def open_garage_light():
     while (time.time() < time_limit):
         while (dev is None and time.time() < time_limit): # while BLE device is occupied, wait
             try:
-                dev = btle.Peripheral("ff:ff:ff:ff:ff:ff")
+                dev = btle.Peripheral(mac_address)
             except btle.BTLEException:
                 time.sleep(0.5)
         # since now BLE switch is connected to RPi
@@ -92,7 +89,7 @@ def close_garage_light():
     while (time.time() < time_limit):
         while (dev is None and time.time() < time_limit): # while BLE device is occupied, wait
             try:
-                dev = btle.Peripheral("ff:ff:ff:ff:ff:ff")
+                dev = btle.Peripheral(mac_address)
             except btle.BTLEException:
                 time.sleep(3)
         # since now BLE switch is connected to RPi
@@ -175,7 +172,11 @@ def human_sensed_callback(channel):
 
 
 
-
+# ******* YOU NEED TO SETUP YOUR MAC_ADDRESS   ******* #
+# ******* WHICH IS "FF:FF:FF:FF:FF:FF" NOW!    ******* #
+# ******* CHANGE IT TO YOUR DEVICE MAC ADDRESS ******* #
+# If you don't know what it is, use LightBlue on iOS to findout *
+mac_address = "ff:ff:ff:ff:ff:ff"
 
 pin_control = 14 #RPi BCM mode pin
 log_filename = 'sense_human_logs.txt'
