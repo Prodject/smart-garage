@@ -76,9 +76,6 @@ def open_garage_light():
 
 def close_garage_light():    
     '''
-    ******* YOU NEED TO SETUP YOUR MAC_ADDRESS   *******
-    ******* WHICH IS "FF:FF:FF:FF:FF:FF" NOW!    *******
-    ******* CHANGE IT TO YOUR DEVICE MAC ADDRESS *******
     Connect to your LOLAR Bluetooth Low Energy switch and turn it off;
     Try to turn it off within `connect_ble_time_limit` seconds,
     if not successful (due to ble issues) then abort this try
